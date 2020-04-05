@@ -9,7 +9,8 @@ import Link from '@material-ui/core/Link';
 
 const style ={
     header:{
-        margin:'0px 150px'
+        margin:'0px 10%',
+        minWidth:'800px',
     },
     toolbar: {
         borderBottom: `1px solid black`,
@@ -59,7 +60,7 @@ class Header extends Component {
                         noWrap
                         style={style.toolbarTitle}
                         >
-                        {"Blog"}
+                        {"Webboard"}
                         </Typography>
                         <IconButton>
                         <SearchIcon />

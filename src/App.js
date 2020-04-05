@@ -20,11 +20,6 @@ class App extends Component {
           <Route exact path="/Logout" component={Logout}/>
           <Route exact path="/Admin" component={Admin}/>
           <Route exact path="/SignUp" component={SignUp}/>
-
-          <Route exact path="/1" component={FeaturedPost}/>
-          <Route exact path="/2" component={Footer}/>
-          <Route exact path="/3" component={Header}/>
-          <Route exact path="/4" component={Main}/>
           <Route path="/" component={Home}/>
         </Switch>
       </BrowserRouter>

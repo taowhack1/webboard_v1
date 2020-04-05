@@ -2,36 +2,32 @@ import React, { Component } from 'react';
 import Layout from './Layout';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import Button from '@material-ui/core/Button';
+
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import {Link} from 'react-router-dom'
+import Topic from './Topic/Topic'
+
+
 class Home extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            openMenu : false
-        }
-        this.openMore = this.openMore.bind(this);
+
     }
 
-    openMore(e){
-        this.setState({
-            openMenu : !this.state.openMenu
-        })
-        console.log(this.state.openMenu)
-    }
     render() {
         const style={
             root: {
               flexGrow: 1,
-              margin:'0px 150px',
-              marginTop:'20px'
+              margin:'0px 10%',
+              marginTop:'20px',
+              minWidth:'800px'
             },
             paper: {
               padding: '16px',
               textAlign: 'center',
               color: 'black',
+              backgroundColor:'#f8f8f8',
             },
             header2:{
                 textAlign:'left'
@@ -39,23 +35,14 @@ class Home extends Component {
             content1:{
                 height:'auto'
             },
-            content2:{
-                padding:'16px',
-                marginTop:'10px',
-                textAlign:'left'
-            },
+
             contentHeader:{
                 fontSize: '1.5rem',
                 fontWeight: '400',
                 lineHeight: '1.334',
                 letterSpacing: '0em',
             },
-            img:{
-                margin: 'auto',
-                display: 'block',
-                maxWidth: '100%',
-                maxHeight: '100%',
-            },
+
         }
         return (
             <Layout>
@@ -79,64 +66,7 @@ class Home extends Component {
                                     News
                                 </Typography>
                                 <Divider />
-                                    {/* ส่วนของเนื้อหา */}
-                                    <Paper style={style.content2}>
-                                        <div className="Heading2">
-                                            <h2>หัวข้อข่าว 1</h2>
-                                        </div>
-                                        <div className="Heading3">
-                                            <h5>วันที่ 3 เม.ย. 2563 โดย <span style={{color:'blue'}}>ผู้เขียนบทความ</span></h5>
-                                        </div>
-                                        <Divider />
-                                        <div className="Content">
-                                            <p>ประยุทร์ บอกว่าจะไม่ลาออกถ้าคนจนไม่หมดไปจากประเทศ</p>
-                                        </div>
-                                        <Divider />
-                                        <Button onClick={this.openMore}>{"<< คอมเม้น >>"}</Button>
-
-                                        {/* ส่วนคอมเม้น */}
-                                        {this.state.openMenu ? 
-                                        <Paper style={style.content2}>
-                                            <Grid container spacing={2}>
-                                                <Grid item style={{backgroundColor:'#d2e0fa'}}>
-                                                    <img style={style.img} alt="complex" src="/static/images/grid/complex.jpg" />
-                                                </Grid>
-                                                <Grid item xs={12} sm container style={{backgroundColor:'#fad2e3'}}>
-                                                    <Grid item xs container direction="column" spacing={2}>
-                                                        <Grid item xs className="comment-content">
-                                                            <Typography gutterBottom variant="subtitle1">
-                                                                โถไอบักตูบแกทำให้ประเทศฉันดูแย่
-                                                            </Typography>
-                                                            <Typography>
-                                                                ผนงรจตกม.
-                                                            </Typography>
-                                                            <Typography color="textSecondary">
-                                                                ID: 1030114
-                                                            </Typography>
-                                                        </Grid>
-                                                        <Grid item className="comment-control">
-                                                            <Button style={{ cursor: 'pointer' }}>
-                                                            +1    
-                                                            </Button>
-                                                            <Button style={{ cursor: 'pointer' }}>
-                                                            Remove
-                                                            </Button>
-                                                        </Grid>
-                                                    </Grid>
-                                                    <Grid item style={{backgroundColor:'#b7e3fa',bottom:'0'}}>
-                                                        <Typography variant="subtitle1">สมพง สมดุกดุ๋ย</Typography>
-                                                        <Typography variant="subtitle1">Sompong.S@gmail.com</Typography>
-                                                    </Grid>
-                                                </Grid>
-                                            </Grid>
-                                        </Paper>
-                                        : null
-                                        
-                                        
-                                    }
-                                        {/* ส่วนคอมเม้น */}
-                                    </Paper>
-                                    {/* ส่วนของเนื้อหา */}
+                                <Topic />
                             </Paper>
                         </Grid>
                     </Grid>
