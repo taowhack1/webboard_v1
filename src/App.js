@@ -1,26 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import Home from "../src/Component/Home";
+import SignIn from './Component/Login/LoginMui'
+import Logout from './Component/Login/Logout'
+import { Switch ,Route, BrowserRouter } from "react-router-dom";
+import Admin from './Component/Authen/Admin'
+import React, { Component } from 'react';
+import SignUp from './Component/Login/SignUp'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import FeaturedPost from './Component/Blog/FeaturedPost'
+import Footer from './Component/Blog/Footer'
+import Header from './Component/Blog/Header'
+import Main from './Component/Blog/Main'
+
+class App extends Component {
+  render() {
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/Login" component={SignIn}/>
+          <Route exact path="/Logout" component={Logout}/>
+          <Route exact path="/Admin" component={Admin}/>
+          <Route exact path="/SignUp" component={SignUp}/>
+
+          <Route exact path="/1" component={FeaturedPost}/>
+          <Route exact path="/2" component={Footer}/>
+          <Route exact path="/3" component={Header}/>
+          <Route exact path="/4" component={Main}/>
+          <Route path="/" component={Home}/>
+        </Switch>
+      </BrowserRouter>
+    );
+  }
 }
 
 export default App;
