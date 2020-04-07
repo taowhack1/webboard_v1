@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import Layout from './Layout';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-
 import Typography from '@material-ui/core/Typography';
 import Divider from '@material-ui/core/Divider';
 import {Link} from 'react-router-dom'
-import Topic from './Topic/Topic'
+import Topics from './Topic/Topics'
 
 
 class Home extends Component {
@@ -60,15 +59,7 @@ class Home extends Component {
                                 </div>
                             </Paper>
                         </Grid>
-                        <Grid item xs={12}>
-                            <Paper style={style.paper}>
-                                <Typography variant="h6" gutterBottom style={style.header2}>
-                                    News
-                                </Typography>
-                                <Divider />
-                                <Topic />
-                            </Paper>
-                        </Grid>
+                        <Topics />
                     </Grid>
                 </div>
             </Layout>

@@ -1,11 +1,42 @@
 import React, { Component } from 'react'
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
+import  axios  from 'axios';
  class NewComment extends Component {
+     constructor(props) {
+         super(props);
+         this.state = {
+             comment : '',
+             topicId : null,
+             userId : 1,
+         }
+         this.sendComment = this.sendComment.bind(this);
+         this.onChange = this.onChange.bind(this);
+     }
+     componentDidMount(){
+         this.setState({
+             topicId : this.props.topicId
+         })
+     }
+     onChange(e){
+         this.setState({
+             comment : e.target.value
+         })
+     }
+     sendComment(e){
+         e.preventDefault();
+         const {comment,topicId,userId} = this.state
+        axios.post("http://localhost:3001/comments",{date: new Date(),userId,topicId,comment})
+        .then(res=>{
+            this.setState({
+                comment:'',topicId:''
+            })
+        })
+     }
     render() {
         const style={
             commentSection:{
-                margin:'40px 0px 0px',
+                margin:'20px 0px 0px',
                 // border:'1px solid black',
                 // borderRadius:'10px',
                 width:'100%',
@@ -48,10 +79,13 @@ import Button from '@material-ui/core/Button';
         return (
             <div>
                 <Paper style={style.content2}>
-                    <form onSubmit="submit" style={style.commentSection}>
-                            <input style={style.inputComment} type="text" name="inputComment" className="inputComment" placeholder="comment here"/>
-                            <Button style={style.commentBtn} type="submit" name="submitBtn">ส่ง</Button>
-                    </form >
+                    <form  style={style.commentSection}>
+                        <input style={style.inputComment} type="text" name="inputComment" className="inputComment" placeholder="comment here"
+                            onChange={this.onChange}
+                            value={this.state.comment}
+                        />
+                        <Button style={style.commentBtn} type="submit" name="submitBtn" onClick={this.sendComment}>ส่ง</Button>
+                    </form>
                 </Paper>
             </div>
         )
