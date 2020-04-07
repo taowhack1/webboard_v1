@@ -15,6 +15,7 @@ class Comment extends Component {
         }
         this.sendComment = this.sendComment.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.delComment = this.delComment.bind(this);
     }
     componentDidMount(){
         axios.get("http://192.168.5.11:8080/comments/findByPostId/"+this.props.post_id).then
@@ -52,16 +53,19 @@ class Comment extends Component {
            
        })
     }
-    // onUpdateComment(e){
-    //     e.preventDefault();
-    //     console.log('Update...')
-    //     axios.get("http://192.168.5.11:8080/comments/findByPostId/"+this.props.post_id).then
-    //     (
-    //         res =>{ 
-    //             this.setState ({comments:res.data}) 
-    //         }
-    //     )
-    // }
+    delComment(comment){
+        console.log("Delete : "+comment.comment_id)
+        axios.delete("http://192.168.5.11:8080/comments/"+comment.comment_id).then(res =>{
+            axios.get("http://192.168.5.11:8080/comments/findByPostId/"+this.state.post_id).then
+            (
+                res =>{ 
+                    this.setState ({
+                        comments : res.data,
+                    })
+                }
+            )
+        })
+    }
 
     render() {
         const style={
@@ -108,14 +112,14 @@ class Comment extends Component {
         }
         return (
             <div>
-                <CommentList comments={this.state.comments} />
+                <CommentList comments={this.state.comments} onDelComment={this.delComment}/>
                 <Paper style={style.content2}>
                     <form  style={style.commentSection}>
                         <input style={style.inputComment} type="text" name="inputComment" className="inputComment" placeholder="comment here"
                             onChange={this.onChange}
                             value={this.state.comment_detail}
                         />
-                        <Button style={style.commentBtn} type="submit" name="submitBtn" onClick={this.sendComment}>ส่ง</Button>
+                        <Button style={style.commentBtn} type="submit" name="submitBtn" onClick={this.sendComment}>ส่่ง</Button>
                     </form>
                 </Paper>
                 {/* <NewComment post_id={this.props.post_id} onUpdateComment={this.onUpdateComment}/> */}

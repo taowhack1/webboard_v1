@@ -7,6 +7,7 @@ class CommentList extends Component {
             this.props.comments && 
             this.props.comments.map(comment => (
                 <CommentItem 
+                    onDelComment={this.props.onDelComment}
                     key={comment.comment_id}
                     comment={comment}
                 />

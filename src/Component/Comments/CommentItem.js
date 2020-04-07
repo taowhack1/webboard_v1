@@ -43,6 +43,7 @@ class CommentItem extends Component {
                             <Typography gutterBottom variant="body2">
                                 {comment_detail}
                             </Typography>
+                            <Button size="small" onClick={() => this.props.onDelComment(this.props.comment)}>X</Button>
                         </Grid>
                         <Grid item container className="comment-control" style={style.userControl}>
                             <Grid style={style.scoreControl}>
