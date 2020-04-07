@@ -58,7 +58,6 @@ class Topics extends Component {
                 backgroundColor:'#f8f8f8',
             },
             topicHeader:{
-                // border:"1px solid blue",
                 position:'relative',
                 paddingBottom:'20px'
             },
@@ -70,7 +69,6 @@ class Topics extends Component {
                 backgroundColor:'white'
             }
         }
-        // console.log(this.state.comments)
         return (
                 <Grid item xs={12}>
                     <Paper style={style.paper}>

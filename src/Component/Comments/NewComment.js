@@ -25,7 +25,6 @@ import Comment from './Comment'
          })
      }
      sendComment(e){
-        e.preventDefault();
         const {user_id,post_id,comment_detail} = this.state
         axios.post("http://192.168.5.11:8080/Comments",{user_id,post_id,comment_detail})
         .then(res=>{
@@ -35,6 +34,7 @@ import Comment from './Comment'
             
         })
      }
+
     render() {
         const style={
             commentSection:{
