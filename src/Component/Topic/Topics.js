@@ -10,6 +10,7 @@ import Layout from '../Layout'
 import TopicList from './TopicList'
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
+import PlaylistAddIcon from '@material-ui/icons/PlaylistAdd';
 class Topics extends Component {
     constructor(props) {
         super(props)
@@ -19,8 +20,15 @@ class Topics extends Component {
         
     }
     componentDidMount(){
-        axios.get("http://localhost:3001/topics").then
-        (res =>{ this.setState ({topics:res.data}) })
+        // axios.get("http://localhost:3001/topics").then
+        // (
+        //     res =>{ this.setState ({topics:res.data}) }
+        // )
+        axios.get("http://192.168.5.11:8080/posts").then
+        (
+            res =>{ this.setState ({topics:res.data}) }
+        )
+       
     }
 
     editProduct(product){
@@ -37,6 +45,8 @@ class Topics extends Component {
         })
     }
     render() {
+        console.log(this.state.topics)
+
         const style={
             header2:{
                 textAlign:'left'
@@ -47,14 +57,31 @@ class Topics extends Component {
                 color: 'black',
                 backgroundColor:'#f8f8f8',
             },
+            topicHeader:{
+                // border:"1px solid blue",
+                position:'relative',
+                paddingBottom:'20px'
+            },
+            addTopicBtn:{
+                position:'absolute',
+                right:'0',
+                top:'0',
+                marginTop:'',
+                backgroundColor:'white'
+            }
         }
-        console.log(this.state.comments)
+        // console.log(this.state.comments)
         return (
                 <Grid item xs={12}>
                     <Paper style={style.paper}>
-                        <Typography variant="h6" gutterBottom style={style.header2}>
-                            บทความล่าสุด
-                        </Typography>
+                        <div style={style.topicHeader}>
+                            <Typography variant="h6" gutterBottom style={style.header2}>
+                                บทความล่าสุด
+                            </Typography>
+                            <Button variant="outlined" size="small" style={style.addTopicBtn}>
+                                   <PlaylistAddIcon style={{marginRight:'5px',fontSize:'16px'}}/>เพิ่มบทความ
+                            </Button>
+                        </div>
                         <Divider />
                         <TopicList topics={this.state.topics}/>
                     </Paper>

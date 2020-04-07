@@ -11,7 +11,7 @@ class Header extends Component {
         this.state = {
             isLoggedIn
         }
-        console.log("login status(Header) : "+isLoggedIn+" \ntoken "+token);    
+        // console.log("login status(Header) : "+isLoggedIn+" \ntoken "+token);    
     }
 
     render() {

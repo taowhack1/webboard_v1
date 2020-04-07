@@ -21,8 +21,7 @@ class TopicItem extends Component {
         })
     }
     render(){
-        const {id, title , subTitle , content } = this.props.topic;
-        
+        const {post_id, post_title , post_detail } = this.props.topic;
         const style ={
             content2:{
                 padding:'16px',
@@ -33,15 +32,15 @@ class TopicItem extends Component {
         return (
             <Paper style={style.content2}>
                 <div className="Heading2">
-                    <h2>{title}</h2>
+                    <h2>{post_title}</h2>
                 </div>
                 <div className="Heading3">
                     {/* <h5>วันที่ 3 เม.ย. 2563 โดย <span style={{color:'blue'}}>ผู้เขียนบทความ</span></h5> */}
-                    <h5>{subTitle}</h5>
+                    {/* <h5>{subTitle}</h5> */}
                 </div>
                 <Divider />
                 <div className="Content">
-                    <p>{content}</p>
+                    <p>{post_detail}</p>
                 </div>
                 <Divider />
                 <Button onClick={this.openMore} style={{backgroundColor:'#f8f8f8',borderRadius:'5px',margin:'5px'}}><ChatBubbleOutlineRoundedIcon style={{fontSize:'22px',marginRight:'10px'}}/>{"แสดงความคิดเห็น"}</Button>
@@ -49,8 +48,7 @@ class TopicItem extends Component {
                 {/* ส่วนคอมเม้น */}
                 {this.state.openMenu ? 
                     <div>
-                        <Comment topicId={id}/>
-                        <NewComment topicId={id}/>
+                        <Comment post_id={post_id}/>
                     </div>
                     
                 : null

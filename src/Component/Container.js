@@ -9,7 +9,7 @@ class Container extends Component {
     }
     render() {
         return (
-            <div>
+            <div style={{marginTop:'130px'}}>
                 {this.props.container}
             </div>
         );

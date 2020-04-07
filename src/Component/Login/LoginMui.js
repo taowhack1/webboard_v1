@@ -54,7 +54,7 @@ class SignIn extends Component {
   onSubmit(e){
       e.preventDefault();
       const {username , password} = this.state;
-      console.log(username,password);
+      // console.log(username,password);
       if(username === "1234" && password ==="1234"){
           localStorage.setItem("token","sadiaghasdkolfasjfafjs")
           this.setState({

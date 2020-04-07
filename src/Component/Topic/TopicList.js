@@ -9,7 +9,7 @@ class TopicList extends Component {
             this.props.topics && 
             this.props.topics.map(topic =>(
                 <TopicItem 
-                    key={topic.id}
+                    key={topic.post_id}
                     topic={topic}
                     // onAddTopic={this.props.onAddTopic}
                     // onDelTopic={this.props.onDelTopic}

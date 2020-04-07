@@ -2,35 +2,37 @@ import React, { Component } from 'react'
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import  axios  from 'axios';
+import Comment from './Comment'
  class NewComment extends Component {
      constructor(props) {
          super(props);
          this.state = {
-             comment : '',
-             topicId : null,
-             userId : 1,
+            comment_detail : '',
+             post_id : null,
+             user_id : 1,
          }
          this.sendComment = this.sendComment.bind(this);
          this.onChange = this.onChange.bind(this);
      }
      componentDidMount(){
          this.setState({
-             topicId : this.props.topicId
+            post_id : this.props.post_id
          })
      }
      onChange(e){
          this.setState({
-             comment : e.target.value
+            comment_detail : e.target.value
          })
      }
      sendComment(e){
-         e.preventDefault();
-         const {comment,topicId,userId} = this.state
-        axios.post("http://localhost:3001/comments",{date: new Date(),userId,topicId,comment})
+        e.preventDefault();
+        const {user_id,post_id,comment_detail} = this.state
+        axios.post("http://192.168.5.11:8080/Comments",{user_id,post_id,comment_detail})
         .then(res=>{
             this.setState({
-                comment:'',topicId:''
+                comment_detail:'',post_id:''
             })
+            
         })
      }
     render() {
@@ -82,7 +84,7 @@ import  axios  from 'axios';
                     <form  style={style.commentSection}>
                         <input style={style.inputComment} type="text" name="inputComment" className="inputComment" placeholder="comment here"
                             onChange={this.onChange}
-                            value={this.state.comment}
+                            value={this.state.comment_detail}
                         />
                         <Button style={style.commentBtn} type="submit" name="submitBtn" onClick={this.sendComment}>ส่ง</Button>
                     </form>

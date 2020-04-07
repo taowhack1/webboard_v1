@@ -5,12 +5,19 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import SearchIcon from '@material-ui/icons/Search';
 import Typography from '@material-ui/core/Typography';
-import Link from '@material-ui/core/Link';
+import {Link} from 'react-router-dom';
 
 const style ={
     header:{
         margin:'0px 10%',
+        width:'80%',
         minWidth:'800px',
+        position:'fixed',
+        top:'0',
+        backgroundColor:'white',
+        zIndex:'1'
+        // boxShadow: '0px 3px 0px #dfe3eb'
+        
     },
     toolbar: {
         borderBottom: `1px solid black`,
@@ -25,6 +32,8 @@ const style ={
     toolbarLink: {
         padding: '8px',
         flexShrink: 0,
+        textDecoration:'none',
+        color:'black'
     },
 }
 const sections = [
@@ -43,7 +52,15 @@ const sections = [
 class Header extends Component {
     constructor(props) {
         super(props);
-
+        const token = localStorage.getItem('token')
+        let isLoggedIn = true
+        if(token == null){
+            isLoggedIn = false
+        }
+        this.state = {
+            isLoggedIn
+        }
+        // console.log("login status(Header) : "+isLoggedIn+" \ntoken "+token);
     }
 
     render() {
@@ -57,7 +74,7 @@ class Header extends Component {
                         variant="h5"
                         color="inherit"
                         align="center"
-                        noWrap
+                        
                         style={style.toolbarTitle}
                         >
                         {"Webboard"}
@@ -65,21 +82,32 @@ class Header extends Component {
                         <IconButton>
                         <SearchIcon />
                         </IconButton>
-                        <Button variant="outlined" size="small">
-                        Sign up
-                        </Button>
+                        {this.state.isLoggedIn ? 
+                        <Link to="/Logout" style={{textDecoration:'none'}}>
+                            <Button variant="outlined" size="small">
+                                Logout
+                            </Button>
+                        </Link>
+                        :
+                        <Link to="/Login" style={{textDecoration:'none'}}>
+                            <Button variant="outlined" size="small">
+                                Login
+                            </Button>
+                        </Link>
+                        }
                     </Toolbar>
                     <Toolbar component="nav" variant="dense" style={style.toolbarSecondary}>
                         {sections.map((section) => (
-                        <Link
+                        <Link to={section.url}
                             color="inherit"
-                            noWrap
+                           
                             key={section.title}
                             variant="body2"
-                            href={section.url}
                             style={style.toolbarLink}
                         >
-                            {section.title}
+                            <Button size="small">
+                                {section.title}
+                            </Button>
                         </Link>
                         ))}
                     </Toolbar>
