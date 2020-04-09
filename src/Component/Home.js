@@ -3,18 +3,38 @@ import Layout from './Layout';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
-import Divider from '@material-ui/core/Divider';
-import {Link} from 'react-router-dom'
 import Topics from './Topic/Topics'
 
 
 class Home extends Component {
     constructor(props) {
         super(props);
-
+        //false - true
+        console.log('start point')
+        this.state={
+            refresh : false
+        }
+        this.refreshState = this.refreshState.bind(this);
+    }
+    refreshState(){
+        this.setState({
+            refresh : !this.state.refresh
+        }) 
     }
 
     render() {
+        console.log('refresh state : '+this.state.refresh)
+        console.log('addTopic : '+localStorage.getItem('addTopic'))
+        if(localStorage.getItem('addTopic')){
+            localStorage.removeItem('addTopic')
+            console.log('remove addTopic')
+            this.refreshState();
+        }
+        // if(localStorage.getItem('addTopic')) {
+        //     console.log('add')
+        //     localStorage.removeItem('addTopic')
+        //     console.log('delLocal')
+        // }
         const style={
             root: {
               flexGrow: 1,

@@ -21,22 +21,25 @@ class TopicItem extends Component {
         })
     }
     render(){
-        const {post_id, post_title , post_detail } = this.props.topic;
+        const {post_id, post_title , post_detail ,user_name} = this.props.topic;
         const style ={
             content2:{
                 padding:'16px',
                 marginTop:'10px',
                 textAlign:'left'
             },
+            Heading3:{
+                marginLeft:'5%'
+                
+            }
         }
         return (
             <Paper style={style.content2}>
                 <div className="Heading2">
                     <h2>{post_title}</h2>
                 </div>
-                <div className="Heading3">
-                    {/* <h5>วันที่ 3 เม.ย. 2563 โดย <span style={{color:'blue'}}>ผู้เขียนบทความ</span></h5> */}
-                    {/* <h5>{subTitle}</h5> */}
+                <div style={style.Heading3}>
+                    <h5>วันที่ 3 เม.ย. 2563 โดย <span style={{color:'blue'}}>{user_name}</span></h5>
                 </div>
                 <Divider />
                 <div className="Content">

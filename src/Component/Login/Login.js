@@ -28,12 +28,12 @@ class Login extends Component {
         e.preventDefault();
         const {username , password} = this.state;
         if(username === "1234" && password ==="1234"){
-            localStorage.setItem("token","sadiaghasdkolfasjfafjs")
+            localStorage.setItem("token","sadiaghasasdsaagagggdkolfasjfafjs")
             this.setState({
                 isLoggedIn : true
             })
         }else{
-            alert("username or password incorrect !!");
+            alert("Incorrect password or username  !!");
             this.setState({
                 username:"",
                 password:""

@@ -6,11 +6,6 @@ import Admin from './Component/Authen/Admin'
 import React, { Component } from 'react';
 import SignUp from './Component/Login/SignUp'
 
-import FeaturedPost from './Component/Blog/FeaturedPost'
-import Footer from './Component/Blog/Footer'
-import Header from './Component/Blog/Header'
-import Main from './Component/Blog/Main'
-
 class App extends Component {
   render() {
     return (

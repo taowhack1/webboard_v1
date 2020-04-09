@@ -15,7 +15,7 @@ const style ={
         position:'fixed',
         top:'0',
         backgroundColor:'white',
-        zIndex:'1'
+        zIndex:'5'
         // boxShadow: '0px 3px 0px #dfe3eb'
         
     },
@@ -83,11 +83,14 @@ class Header extends Component {
                         <SearchIcon />
                         </IconButton>
                         {this.state.isLoggedIn ? 
-                        <Link to="/Logout" style={{textDecoration:'none'}}>
-                            <Button variant="outlined" size="small">
-                                Logout
-                            </Button>
-                        </Link>
+                        <div>
+                                
+                            <Link to="/Logout" style={{textDecoration:'none'}}>
+                                <Button variant="outlined" size="small">
+                                {localStorage.getItem('user_name')} Logout
+                                </Button>
+                            </Link>
+                        </div>
                         :
                         <Link to="/Login" style={{textDecoration:'none'}}>
                             <Button variant="outlined" size="small">
