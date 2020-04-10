@@ -14,18 +14,6 @@ import Container from '@material-ui/core/Container';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios'
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright Â© '}
-      <Link color="inherit" to="/">
-        Webboard
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 class SignIn extends Component {
   constructor(props) {
@@ -58,10 +46,9 @@ class SignIn extends Component {
       const {user_name , user_password} = this.state;
       axios.post("http://192.168.5.11:8080/users/login",{user_name,user_password}).then(res =>{
           if(res.data.success == false){
-            alert('username or password incorrect !!')
+            alert('username , password ไม่ถูกต้อง !!')
             this.setState({
               user_password : '',
-              user_name : ''
             })
           }else{
             localStorage.setItem("user_id",res.data.data.user_id)
@@ -90,15 +77,16 @@ class SignIn extends Component {
         },
         avatar : {
           margin: '8px',
-          backgroundColor: '#fce4ec',
+          backgroundColor: '#ff0055',
         },
         form : {
           width: '100%', // Fix IE 11 issue.
           marginTop: '8px',
         },
         submit : {
-          margin: '24px 0px 16px 0px',
+          margin: '12px 0px 16px 0px',
         },
+        
       }
     
     return (
@@ -123,6 +111,7 @@ class SignIn extends Component {
               autoComplete="Username"
               autoFocus
               onChange={this.onChange}
+              required
             />
             <TextField
               variant="outlined"
@@ -135,27 +124,32 @@ class SignIn extends Component {
               id="password"
               autoComplete="current-password"
               onChange={this.onChange}
+              required
             />
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              style={style.submit}
-            >
-              เข้าสู่ระบบ
-            </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link to="/" variant="body2">
-                  ลืมรหัสผ่าน ?
-                </Link>
-              </Grid>
-              <Grid item>
+            {this.state.user_name && this.state.user_password ?
+              <Button
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                style={style.submit}
+              >
+                เข้าสู่ระบบ
+              </Button>
+              : 
+              <Button
+                type="button"
+                fullWidth
+                variant="contained"
+                color="primary"
+                style={style.submit}
+                disabled
+              >
+                เข้าสู่ระบบ
+              </Button>
+            }
+            <Grid container justify='center'>
+              <Grid item >
                 <Link to='/SignUp'>
                   {"ยังไม่มีบัญชี ? ลงทะเบียน"}
                 </Link>
@@ -163,9 +157,6 @@ class SignIn extends Component {
             </Grid>
           </form>
         </div>
-        <Box mt={8}>
-          <Copyright />
-        </Box>
     </Container>
     );
   }

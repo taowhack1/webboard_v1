@@ -1,10 +1,6 @@
 import React, { Component } from 'react'
-import ChatBubbleOutlineRoundedIcon from '@material-ui/icons/ChatBubbleOutlineRounded';
-import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
 import Paper from '@material-ui/core/Paper';
-import Comment from '../Comments/Comment'
-import NewComment from '../Comments/NewComment'
 import axios from "axios"
 import AddTopic from './AddTopic'
 import TopicList from './TopicList'
@@ -20,41 +16,29 @@ class Topics extends Component {
         this.submitForm = this.submitForm.bind(this);
     }
     componentDidMount(){
-        // axios.get("http://localhost:3001/topics").then
-        // (
-        //     res =>{ this.setState ({topics:res.data}) }
-        // )
         axios.get("http://192.168.5.11:8080/posts").then
         (
             res =>{ this.setState ({topics:res.data}) }
         )
     }
     submitForm(formValue,handleClose){
-        
         const {post_title,post_detail,user_id} = formValue
         axios.post('http://192.168.5.11:8080/posts',{post_title,post_detail,user_id}).then(res=>{
-            alert('เพิ่มโพสใหม่แล้ว')
         }).then(
             res=>{
                 axios.get("http://192.168.5.11:8080/posts").then
                 (
-                    res =>{ this.setState ({topics:res.data}) }
+                    res =>{ this.setState ({topics:res.data}) },
+                    alert('เพิ่มโพสใหม่แล้ว')
                 )
             }
         )
         handleClose();
     }
-    refreshTopicList(){
-        
-    }
     render() {
         const style={
-            header2:{
-                textAlign:'left'
-            },
             paper: {
                 padding: '16px',
-                textAlign: 'center',
                 color: 'black',
                 backgroundColor:'#f8f8f8',
             },
@@ -65,10 +49,10 @@ class Topics extends Component {
 
         }
         return (
-                <Grid item xs={12}>
+                <Grid item xs={12} style={{minWidth:'600px'}}>
                     <Paper style={style.paper}>
                         <div style={style.topicHeader}>
-                            <Typography variant="h6" gutterBottom style={style.header2}>
+                            <Typography variant="h6" gutterBottom align='left'>
                                 บทความล่าสุด
                             </Typography>
                             <AddTopic submitForm={this.submitForm}/>

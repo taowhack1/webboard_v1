@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
@@ -11,7 +10,7 @@ const style ={
     header:{
         margin:'0px 10%',
         width:'80%',
-        minWidth:'800px',
+        minWidth:'600px',
         position:'fixed',
         top:'0',
         backgroundColor:'white',
@@ -21,6 +20,7 @@ const style ={
     },
     toolbar: {
         borderBottom: `1px solid black`,
+        
     },
     toolbarTitle: {
         flex: 1,
@@ -28,6 +28,9 @@ const style ={
     toolbarSecondary: {
         justifyContent: 'space-between',
         overflowX: 'auto',
+        // backgroundColor:'blue',
+        position:'relative',
+        boxShadow: '-6px 0 white, 6px 0 white, 0 7px 5px -2px #dedede'
     },
     toolbarLink: {
         padding: '8px',
@@ -36,18 +39,6 @@ const style ={
         color:'black'
     },
 }
-const sections = [
-    { title: 'Technology', url: '#' },
-    { title: 'Design', url: '#' },
-    { title: 'Culture', url: '#' },
-    { title: 'Business', url: '#' },
-    { title: 'Politics', url: '#' },
-    { title: 'Opinion', url: '#' },
-    { title: 'Science', url: '#' },
-    { title: 'Health', url: '#' },
-    { title: 'Style', url: '#' },
-    { title: 'Travel', url: '#' },
-];
 
 class Header extends Component {
     constructor(props) {
@@ -60,7 +51,6 @@ class Header extends Component {
         this.state = {
             isLoggedIn
         }
-        // console.log("login status(Header) : "+isLoggedIn+" \ntoken "+token);
     }
 
     render() {
@@ -82,37 +72,37 @@ class Header extends Component {
                         <IconButton>
                         <SearchIcon />
                         </IconButton>
-                        {this.state.isLoggedIn ? 
-                        <div>
-                                
-                            <Link to="/Logout" style={{textDecoration:'none'}}>
-                                <Button variant="outlined" size="small">
-                                {localStorage.getItem('user_name')} Logout
-                                </Button>
-                            </Link>
-                        </div>
-                        :
-                        <Link to="/Login" style={{textDecoration:'none'}}>
-                            <Button variant="outlined" size="small">
-                                Login
-                            </Button>
-                        </Link>
-                        }
                     </Toolbar>
                     <Toolbar component="nav" variant="dense" style={style.toolbarSecondary}>
-                        {sections.map((section) => (
-                        <Link to={section.url}
-                            color="inherit"
-                           
-                            key={section.title}
-                            variant="body2"
-                            style={style.toolbarLink}
-                        >
-                            <Button size="small">
-                                {section.title}
-                            </Button>
-                        </Link>
-                        ))}
+                        <div style={{position:'absolute',right:'10px',}}>
+                        {this.state.isLoggedIn ? 
+                            <div>
+                                <Link to="/" style={style.toolbarLink}>
+                                    <Button variant="none" size="small">
+                                    {localStorage.getItem("user_name")}
+                                    </Button>
+                                </Link>
+                                <Link to="/Logout" style={style.toolbarLink}>
+                                    <Button variant="outlined" size="small">
+                                        ออกจากระบบ
+                                    </Button>
+                                </Link>
+                            </div>
+                            :
+                            <div>
+                                <Link to="/SignUp" style={style.toolbarLink}>
+                                    <Button variant="outlined" size="small">
+                                        ลงทะเบียน
+                                    </Button>
+                                </Link>
+                                <Link to="/Login" style={style.toolbarLink}>
+                                    <Button variant="outlined" size="small">
+                                        เข้าสู่ระบบ
+                                    </Button>
+                                </Link>
+                            </div>
+                            }
+                    </div>
                     </Toolbar>
                 </div>
             </React.Fragment>
@@ -121,7 +111,3 @@ class Header extends Component {
 }
 
 export default Header;
-
-Header.propTypes = {
-  sections: PropTypes.array,
-};

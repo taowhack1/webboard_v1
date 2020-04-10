@@ -77,15 +77,16 @@ class AddTopic extends Component {
                 backgroundColor:'white'
             }
         }
+
         return (
             <div>
                 {
                 localStorage.getItem('user_name') ? 
-                <div>
-                    <Button variant="outlined" size="small" style={style.addTopicBtn} onClick={this.handleOpen}>
-                        <PlaylistAddIcon style={{marginRight:'5px',fontSize:'16px'}}/>เพิ่มบทความ
-                    </Button>
-                    <Modal
+                    <div>
+                        <Button variant="outlined" size="small" style={style.addTopicBtn} onClick={this.handleOpen}>
+                            <PlaylistAddIcon style={{marginRight:'5px',fontSize:'16px'}}/>เพิ่มบทความ
+                        </Button>
+                        <Modal
                         aria-labelledby="transition-modal-title"
                         aria-describedby="transition-modal-description"
                         style={style.modal}
@@ -96,38 +97,39 @@ class AddTopic extends Component {
                         BackdropProps={{
                         timeout: 500,
                         }}
-                    >
-                        <Fade in={this.state.openModal}>
+                        >
+                            <Fade in={this.state.openModal}>
                         <div style={style.paper}>
                             <TextField
-                            id="standard-full-width"
-                            label="หัวข้อเรื่อง"   
-                            name="post_title"
-                            onChange={this.onChange}
-                            value={this.state.post_title}
-                            style={{ margin: 8 }}
-                            placeholder="หัวข้อเรื่อง"
-                            helperText=""
-                            fullWidth
-                            margin="normal"
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
+                                id="standard-full-width"
+                                label="หัวข้อเรื่อง"   
+                                name="post_title"
+                                onChange={this.onChange}
+                                value={this.state.post_title}
+                                style={{ margin: 8 }}
+                                placeholder="หัวข้อเรื่อง"
+                                helperText=""
+                                fullWidth
+                                margin="normal"
+                                InputLabelProps={{
+                                    shrink: true,
+                                }}
                             />
                             <TextField
-                            id="outlined-multiline-static"
-                            label="เนื้อหา"
-                            name="post_detail"
-                            onChange={this.onChange}
-                            value={this.state.post_detail}
-                            multiline
-                            style={{ margin: 8 }}
-                            rows="8"
-                            fullWidth
-                            placeholder="เนื้อหา"
-                            variant="outlined"
+                                id="outlined-multiline-static"
+                                label="เนื้อหา"
+                                name="post_detail"
+                                onChange={this.onChange}
+                                value={this.state.post_detail}
+                                multiline
+                                style={{ margin: 8 }}
+                                rows="8"
+                                fullWidth
+                                placeholder="เนื้อหา"
+                                variant="outlined"
                             />
                             <div className="Form-Control" style={style.FormControl}>
+                            {this.state.post_title && this.state.post_detail ?
                                 <Button
                                     variant="contained"
                                     color="primary"
@@ -140,9 +142,29 @@ class AddTopic extends Component {
                                         left:'0'
                                     }}
                                     startIcon={<TelegramIcon />}
+                                     
                                 >
                                     โพส
                                 </Button>
+                                :
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={()=>this.props.submitForm(this.state,this.handleClose)}
+                                    style={{
+                                        padding:'8px 24px',
+                                        margin:'8px',
+                                        position:'absolute',
+                                        top:'0',
+                                        left:'0'
+                                    }}
+                                    startIcon={<TelegramIcon />}
+                                    disabled
+                                     
+                                >
+                                    โพส
+                                </Button>
+                            }
                                 <Button
                                     variant="contained"
                                     color="secondary"

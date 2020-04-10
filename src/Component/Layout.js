@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Header from './HeaderMui';
-import Footer from './Footer';
 import Container from './Container';
 class Layout extends Component {
     constructor(props){
@@ -15,7 +14,6 @@ class Layout extends Component {
             <div>
                 <Header />
                 <Container container={this.props.children}/>
-                
             </div>
         );
     }

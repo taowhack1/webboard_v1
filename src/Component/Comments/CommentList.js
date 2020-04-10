@@ -16,7 +16,7 @@ class CommentList extends Component {
     }
     
     render() {
-        return (<div>{this.showComment()}</div>);
+        return <div>{this.showComment()}</div>;
         
     }
 }

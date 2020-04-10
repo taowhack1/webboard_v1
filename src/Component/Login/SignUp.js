@@ -3,29 +3,12 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import axios from 'axios';
 import { Redirect,Link } from 'react-router-dom';
-
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright Â© '}
-      <Link color="inherit" href="https://material-ui.com/">
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
 
 class SignUp extends Component {
   constructor(props) {
@@ -53,7 +36,7 @@ class SignUp extends Component {
           user_password : '',
           status : 1
         })
-        alert("เพิ่มข้อมูลเรียบร้อยแล้ว")
+        alert("ลงทะเบียนเสร็จสิ้น คุณสามารถเข้าสู่ระบบได้แล้ว")
       })
     }else{
       alert("กรุณากรอกข้อมูลให้ครบถ้วน");
@@ -73,14 +56,14 @@ class SignUp extends Component {
       },
       avatar : {
         margin: '8px',
-        backgroundColor: '#fce4ec',
+        backgroundColor: '#ff0055',
       },
       form : {
         width: '100%', // Fix IE 11 issue.
         marginTop: '24px',
       },
       submit : {
-        margin: '24px 0px 16px 0px',
+        margin: '12px 0px 16px 0px',
       }
     }
     
@@ -96,17 +79,6 @@ class SignUp extends Component {
           </Typography>
           <form style={style.form} noValidate>
             <Grid container spacing={2}>
-              {/* <Grid item xs={12}>
-                <TextField
-                  variant="outlined"
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  autoComplete="email"
-                />
-              </Grid> */}
               <Grid item xs={12}>
                 <TextField
                   variant="outlined"
@@ -114,9 +86,10 @@ class SignUp extends Component {
                   fullWidth
                   onChange={this.onChange}
                   id="user_name"
-                  label="user_name"
+                  label="username"
                   name="user_name"
                   autoComplete="username"
+                  required
                 />
               </Grid>
               <Grid item xs={12}>
@@ -126,17 +99,14 @@ class SignUp extends Component {
                   fullWidth
                   onChange={this.onChange}
                   name="user_password"
-                  label="user_password"
+                  label="password"
                   type="password"
                   id="user_password"
                   autoComplete="current-password"
+                  required
                 />
               </Grid>
               <Grid item xs={12}>
-                {/* <FormControlLabel
-                  control={<Checkbox value="allowExtraEmails" color="primary" />}
-                  label="I want to receive inspiration, marketing promotions and updates via email."
-                /> */}
               </Grid>
             </Grid>
             <Button
@@ -149,7 +119,7 @@ class SignUp extends Component {
             >
               ลงทะเบียน
             </Button>
-            <Grid container justify="flex-end">
+            <Grid container justify="center">
               <Grid item>
                 <Link to='/Login' variant="body2">
                   มีบัญชีอยู่แล้ว ? เข้าสู่ระบบ
@@ -158,9 +128,6 @@ class SignUp extends Component {
             </Grid>
           </form>
         </div>
-        <Box mt={5}>
-          <Copyright />
-        </Box>
       </Container>
     );
   }
